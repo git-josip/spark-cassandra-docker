@@ -5,10 +5,11 @@ RUN curl -s https://s3.amazonaws.com/foxtrot-libs/spark-1.5.2-scala-2.11-jdk-8.t
 RUN cd /usr/local && ln -s spark-1.5.2-scala-2.11-jdk-8 spark
 ENV SPARK_HOME /usr/local/spark
 
-# Spark utils
+# Spark utils/conf
 ADD src/start-master.sh /start-master.sh
 ADD src/start-worker /start-worker.sh
 ADD src/spark-defaults.conf /spark-defaults.conf
+ADD src/log4j.properties SPARK_HOME/conf/log4j.properties
 
 # Spark Dependencies
 ADD lib /usr/local/spark/lib

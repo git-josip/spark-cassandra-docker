@@ -10,9 +10,9 @@ trait DemoApp extends App with Logging {
   val conf = new SparkConf()
     .set("spark.cassandra.connection.host", cassandraHost)
     .set("spark.cleaner.ttl", "3600")
-    .set("spark.local.ip", "172.17.0.6")
+    .set("spark.eventLog.enabled", "true")
+    .set("spark.eventLog.dir", "/")
     .setMaster(sparkMasterHost)
-    .setJars(Seq(SparkContext.jarOfClass(this.getClass).get))
     .setAppName(getClass.getSimpleName)
 
   // Connect to the Spark cluster:
