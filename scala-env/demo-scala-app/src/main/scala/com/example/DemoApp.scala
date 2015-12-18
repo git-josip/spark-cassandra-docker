@@ -12,11 +12,15 @@ trait DemoApp extends App with Logging {
   val conf = new SparkConf()
     .set("spark.cassandra.connection.host", cassandraHost)
     .set("spark.cleaner.ttl", "3600")
+    .set("spark.local.ip", hostIp)
+    .setJars(Seq(SparkContext.jarOfClass(this.getClass).get))
     .setMaster(sparkMasterHost)
     .setAppName(getClass.getSimpleName)
-  
+    .setMaster(sparkMasterHost)
+
   // Connect to the Spark cluster:
-  lazy val sc = new SparkContext(conf)
+  val sc = new SparkContext(conf)
+  sc.setLogLevel("INFO")
 }
 
 object DemoApp {
