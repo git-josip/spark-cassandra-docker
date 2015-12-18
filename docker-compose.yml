@@ -18,9 +18,10 @@ opscenter:
  image: raimille1/spark-cassandra:opscenter-5.2.2
  ports:
    - "8888:8888"
+
 kafka:
   container_name: le_kafka
-  image: spotify/kafka
+  image: raimille1/spark-cassandra:kafka-0.9.0.0
   hostname: kafkahost
   ports:
     - "2181:2181"

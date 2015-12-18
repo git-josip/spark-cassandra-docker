@@ -2,7 +2,9 @@
 
 if [ -z "$SPARK_MASTER_HOST" ]; then echo "SPARK_MASTER_HOST is unset. Quitting" && exit 1; fi
 
-$JAVA_HOME/bin/java -cp $SPARK_HOME/sbin/../conf/:$SPARK_HOME/lib/spark-assembly-1.5.2-hadoop2.7.1.jar \
+export SPARK_CLASSPATH="$SPARK_HOME/sbin/../conf/:$SPARK_HOME/lib/*"
+
+$JAVA_HOME/bin/java -cp $SPARK_CLASSPATH \
 	-Dspark.driver.port=7001 -Dspark.fileserver.port=7002 \
 	-Dspark.broadcast.port=7003 -Dspark.replClassServer.port=7004 \
 	-Dspark.blockManager.port=7005 -Dspark.executor.port=7006 -Dspark.ui.port=4040 \
