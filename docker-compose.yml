@@ -17,7 +17,7 @@ opscenter:
  container_name: opscenter
  image: raimille1/spark-cassandra:opscenter-5.2.2
  ports:
-   - "8888:8888"
+   - "8888:8889"
 
 kafka:
   container_name: le_kafka
@@ -53,3 +53,5 @@ spark-worker:
   links:
     - spark-master
     - cassandra
+  ports:
+    - "8888:8888"
