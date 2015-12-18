@@ -13,13 +13,13 @@ object BasicReadWriteDemo extends DemoApp {
     session.execute("INSERT INTO test.key_value(key, value) VALUES (3, 'third row')")
   }
 
-  log.info(s"Created cassandra records successfully")
+  println(s"Created cassandra records successfully")
 
   import com.datastax.spark.connector._
 
   // Read table test.kv and print its contents:
   val rdd = sc.cassandraTable("test", "key_value").select("key", "value")
-  rdd.collect().foreach(row => log.info(s"Existing Data: $row"))
+  rdd.collect().foreach(row => println(s"Existing Data: $row"))
 
   // Write two new rows to the test.kv table:
   val col = sc.parallelize(Seq((4, "fourth row"), (5, "fifth row")))
@@ -28,6 +28,6 @@ object BasicReadWriteDemo extends DemoApp {
   // Assert the two new rows were stored in test.kv table:
   assert(col.collect().length == 2)
 
-  col.collect().foreach(row => log.info(s"New Data: $row"))
+  col.collect().foreach(row => println(s"New Data: $row"))
   sc.stop()
 }

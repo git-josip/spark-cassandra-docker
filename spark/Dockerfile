@@ -9,7 +9,7 @@ ENV SPARK_HOME /usr/local/spark
 ADD src/start-master.sh /start-master.sh
 ADD src/start-worker /start-worker.sh
 ADD src/spark-defaults.conf /spark-defaults.conf
-ADD src/log4j.properties SPARK_HOME/conf/log4j.properties
+ADD src/log4j.properties $SPARK_HOME/conf/log4j.properties
 
 # Spark Dependencies
 ADD lib /usr/local/spark/lib

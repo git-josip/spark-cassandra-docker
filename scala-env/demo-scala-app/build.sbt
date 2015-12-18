@@ -12,7 +12,6 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 // Dependencies
 libraryDependencies += "com.datastax.spark" %% "spark-cassandra-connector" % "1.5.0-M3" from "http://repo1.maven.org/maven2/com/datastax/spark/spark-cassandra-connector_2.11/1.5.0-M3/spark-cassandra-connector_2.11-1.5.0-M3.jar"
 
-
 enablePlugins(JavaAppPackaging)
 enablePlugins(DockerPlugin)
 
