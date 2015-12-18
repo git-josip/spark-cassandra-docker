@@ -1,0 +1,54 @@
+cassandra: 
+  image: raimille1/spark-cassandra:cass-2.1.12
+  mem_limit: 2000000000
+  environment:
+    - CASSANDRA_CLUSTER_NAME=Foxtrot C*
+    - CASSANDRA_DC=DC1
+    - CASSANDRA_RACK=RACK1
+    - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+    - MAX_HEAP_SIZE=2G
+    - HEAP_NEWSIZE=1G
+  volumes:
+    - /var/lib/cassandra:/var/lib/cassandra
+  ports:
+    - "9042:9042"
+
+opscenter:
+ container_name: opscenter
+ image: raimille1/spark-cassandra:opscenter-5.2.2
+ ports:
+   - "8888:8888"
+kafka:
+  container_name: le_kafka
+  image: spotify/kafka
+  hostname: kafkahost
+  ports:
+    - "2181:2181"
+    - "9092:9092"
+  environment:
+    - ADVERTISED_HOST="${DOCKER_HOST}"
+    - ADVERTISED_PORT=9092
+
+spark-master:
+  container_name: sparkmaster
+  hostname: sparkmaster
+  mem_limit: 2000000000
+  environment:
+    - SPARK_MASTER_HOST=sparkmaster
+  image: raimille1/spark-cassandra:spark-1.5.2-scala-2.11
+  command: /usr/local/bin/start master
+  ports:
+    - "4040:4040"
+    - "6066:6066"
+    - "7077:7077"
+    - "8080:8080"
+  links:
+    - cassandra
+
+spark-worker:
+  image: raimille1/spark-cassandra:spark-1.5.2-scala-2.11
+  command: /usr/local/bin/start worker
+  mem_limit: 2000000000
+  links:
+    - spark-master
+    - cassandra
