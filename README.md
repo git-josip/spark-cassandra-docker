@@ -37,6 +37,15 @@ echo "$(docker-machine ip dockerhost)" dockerhost | sudo tee -a /etc/hosts
 echo "$(docker-machine ip dockerhost)" sparkmaster | sudo tee -a /etc/hosts
 echo "$(docker-machine ip dockerhost)" kafkahost | sudo tee -a /etc/hosts
 
+## Optional: Setup OpsCenter (Cassandra Monitoring)
+http://dockerhost:8888
+Select "Add existing cluster..."
+Type cassandra and Save
+Start monitoring!
+
+## Optional: Open Spark Console (Spark Monitoring)
+http://sparkmaster:8080/
+
 
 # Utils
 
