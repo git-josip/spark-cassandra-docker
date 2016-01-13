@@ -1,4 +1,5 @@
 cassandra: 
+  container_name: cassandra
   image: raimille1/spark-cassandra:cass-2.1.12
   mem_limit: 2000000000
   environment:
@@ -9,17 +10,17 @@ cassandra:
     - MAX_HEAP_SIZE=2G
     - HEAP_NEWSIZE=1G
   volumes:
-    - /var/lib/cassandra:/var/lib/cassandra
+    - /data/var/lib/cassandra:/var/lib/cassandra
   ports:
     - "9042:9042"
+  restart: always
 
 opscenter:
  container_name: opscenter
  image: raimille1/spark-cassandra:opscenter-5.2.2
  ports:
    - "8888:8888"
- links:
-   - cassandra
+ restart: always
 
 kafka:
   container_name: le_kafka
@@ -31,6 +32,7 @@ kafka:
   environment:
     - ADVERTISED_HOST="${DOCKER_HOST}"
     - ADVERTISED_PORT=9092
+  restart: always
 
 spark-master:
   container_name: sparkmaster
@@ -45,15 +47,14 @@ spark-master:
     - "6066:6066"
     - "7077:7077"
     - "8080:8080"
-  links:
-    - cassandra
+  restart: always
 
 spark-worker:
   image: raimille1/spark-cassandra:spark-1.5.2-scala-2.11
   command: /usr/local/bin/start worker
   mem_limit: 2000000000
-  links:
-    - spark-master
-    - cassandra
   ports:
     - "8081:8081"
+  environment:
+    - SPARK_MASTER_ENV_SPARK_MASTER_PORT=7077
+  restart: always
