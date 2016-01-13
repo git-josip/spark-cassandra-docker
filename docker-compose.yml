@@ -1,7 +1,7 @@
 cassandra: 
   container_name: cassandra
   image: raimille1/spark-cassandra:cass-2.1.12
-  mem_limit: 2000000000
+  mem_limit: 2200000000
   environment:
     - CASSANDRA_CLUSTER_NAME=Foxtrot C*
     - CASSANDRA_DC=DC1
@@ -37,7 +37,7 @@ kafka:
 spark-master:
   container_name: sparkmaster
   hostname: sparkmaster
-  mem_limit: 2000000000
+  mem_limit: 1500000000
   environment:
     - SPARK_MASTER_HOST=sparkmaster
   image: raimille1/spark-cassandra:spark-1.5.2-scala-2.11
@@ -52,7 +52,7 @@ spark-master:
 spark-worker:
   image: raimille1/spark-cassandra:spark-1.5.2-scala-2.11
   command: /usr/local/bin/start worker
-  mem_limit: 2000000000
+  mem_limit: 2500000000
   ports:
     - "8081:8081"
   environment:

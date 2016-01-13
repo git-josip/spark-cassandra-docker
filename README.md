@@ -43,6 +43,7 @@ VBoxManage modifyvm "dockerhost" --natpf1 "cassandrathrift,tcp,,9160,,9160"
 echo "$(docker-machine ip dockerhost)" dockerhost | sudo tee -a /etc/hosts
 echo "$(docker-machine ip dockerhost)" sparkmaster | sudo tee -a /etc/hosts
 echo "$(docker-machine ip dockerhost)" kafkahost | sudo tee -a /etc/hosts
+echo "$(docker-machine ip dockerhost)" cassandra | sudo tee -a /etc/hosts
 ```
 
 #### Optional: Setup OpsCenter (Cassandra Monitoring)
