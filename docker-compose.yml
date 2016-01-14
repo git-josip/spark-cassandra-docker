@@ -33,7 +33,7 @@ spark-master:
   mem_limit: 1500000000
   environment:
     - SPARK_MASTER_HOST=sparkmaster
-  image: raimille1/spark-cassandra:spark-1.5.2-scala-2.11
+  image: raimille1/spark-cassandra:spark-1.6.0-scala-2.11
   command: /usr/local/bin/start master
   ports:
     - "4040:4040"
@@ -43,7 +43,7 @@ spark-master:
   restart: always
 
 spark-worker:
-  image: raimille1/spark-cassandra:spark-1.5.2-scala-2.11
+  image: raimille1/spark-cassandra:spark-1.6.0-scala-2.11
   command: /usr/local/bin/start worker
   mem_limit: 2500000000
   ports:
