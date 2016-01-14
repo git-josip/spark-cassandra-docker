@@ -1,7 +1,8 @@
 FROM raimille1/spark-cassandra:centos-jdk-8
 
 # Spark install
-RUN curl -s https://s3.amazonaws.com/foxtrot-libs/spark-1.6.0-bin-2.7.1-scala-2.11-jdk-8.tar.gz | tar -xz -C /usr/local/
+RUN mkdir /usr/local/spark-1.6.0-bin-2.7.1-scala-2.11-jdk-8
+RUN curl -s https://s3.amazonaws.com/foxtrot-libs/spark-1.6.0-bin-2.7.1-scala-2.11-jdk-8.tar.gz | tar -xz -C /usr/local/spark-1.6.0-bin-2.7.1-scala-2.11-jdk-8
 RUN cd /usr/local && ln -s spark-1.6.0-bin-2.7.1-scala-2.11-jdk-8 spark
 ENV SPARK_HOME /usr/local/spark
 
