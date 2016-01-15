@@ -66,12 +66,12 @@ spark-worker:
   restart: always
 
 # Monitoring 
-opscenter:
-  container_name: opscenter
-  image: raimille1/spark-cassandra:opscenter-5.2.2
-  ports:
-    - "8888:8888"
-  restart: always
+#opscenter:
+#  container_name: opscenter
+#  image: raimille1/spark-cassandra:opscenter-5.2.2
+#  ports:
+#    - "8888:8888"
+#  restart: always
 
 cadvisor:
   container_name: cadvisor
