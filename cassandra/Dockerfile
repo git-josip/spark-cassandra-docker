@@ -16,6 +16,7 @@ ADD src/start.sh /usr/local/bin/start
 
 # Configure supervisord
 ADD src/supervisord.conf /etc/supervisord.conf
+ADD src/supervisord-no-ops-center.conf /etc/supervisord-no-ops-center.conf
 
 # Necessary since cassandra is trying to check for a NPE that freezes boot2docker
 RUN sed -ri '/CASSANDRA-7254/,+5d' /usr/sbin/cassandra

@@ -9,6 +9,7 @@ cassandra-01:
     - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
     - MAX_HEAP_SIZE=2G
     - HEAP_NEWSIZE=1G
+    #- OPSCENTER_HOST=opscenter
   volumes:
     - /data/cassandra-01:/var/lib/cassandra
   ports:
@@ -27,6 +28,7 @@ cassandra-02:
     - MAX_HEAP_SIZE=2G
     - HEAP_NEWSIZE=1G
     - CASSANDRA_SEEDS=cassandra-01
+    #- OPSCENTER_HOST=opscenter
   volumes:
     - /data/cassandra-02:/var/lib/cassandra
   restart: always
