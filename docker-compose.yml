@@ -16,14 +16,13 @@ cassandra:
   restart: always
 
 kafka:
-  container_name: le_kafka
+  container_name: kafkahost
   image: raimille1/spark-cassandra:kafka-0.9.0.0
-  hostname: kafkahost
   ports:
     - "2181:2181"
     - "9092:9092"
   environment:
-    - ADVERTISED_HOST="${DOCKER_HOST}"
+    - ADVERTISED_HOST=kafkahost
     - ADVERTISED_PORT=9092
   restart: always
 
