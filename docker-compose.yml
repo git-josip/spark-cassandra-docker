@@ -1,5 +1,5 @@
-cassandra: 
-  container_name: cassandra
+cassandra-01: 
+  container_name: cassandra-01
   image: raimille1/spark-cassandra:cass-2.1.12
   mem_limit: 2200000000
   environment:
@@ -10,9 +10,25 @@ cassandra:
     - MAX_HEAP_SIZE=2G
     - HEAP_NEWSIZE=1G
   volumes:
-    - /data/var/lib/cassandra:/var/lib/cassandra
+    - /data/cassandra-01:/var/lib/cassandra
   ports:
     - "9042:9042"
+  restart: always
+
+cassandra-02: 
+  container_name: cassandra-02
+  image: raimille1/spark-cassandra:cass-2.1.12
+  mem_limit: 2200000000
+  environment:
+    - CASSANDRA_CLUSTER_NAME=Foxtrot C*
+    - CASSANDRA_DC=DC1
+    - CASSANDRA_RACK=RACK1
+    - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+    - MAX_HEAP_SIZE=2G
+    - HEAP_NEWSIZE=1G
+    - CASSANDRA_SEEDS=cassandra-01
+  volumes:
+    - /data/cassandra-02:/var/lib/cassandra
   restart: always
 
 kafka:
