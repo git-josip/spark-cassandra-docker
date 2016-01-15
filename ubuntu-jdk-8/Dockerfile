@@ -1,5 +1,10 @@
 FROM phusion/baseimage:0.9.18
 
+ENV FOXTROT_USER foxtrot
+ENV FOXTROT_HOME /home/foxtrot
+
+RUN useradd --create-home --home ${FOXTROT_HOME} ${FOXTROT_USER}
+
 # Install basic packages and supervisord
 RUN apt-get update
 RUN apt-get install -y python-setuptools sudo
