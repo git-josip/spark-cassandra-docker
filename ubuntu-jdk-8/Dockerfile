@@ -2,7 +2,8 @@ FROM phusion/baseimage:0.9.18
 
 # Install basic packages and supervisord
 RUN apt-get update
-RUN apt-get install -y supervisor sudo
+RUN apt-get install -y python-setuptools sudo
+RUN easy_install supervisor==3.2
 
 # Configure supervisord
 RUN mkdir -p /var/log/supervisor
