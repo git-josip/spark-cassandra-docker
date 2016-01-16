@@ -1,6 +1,6 @@
 cassandra-01: 
   container_name: cassandra-01
-  image: raimille1/spark-cassandra:cass-2.1.12
+  image: foxtrotsystems/apache-cassandra:2.1.12
   mem_limit: 2200000000
   environment:
     - CASSANDRA_CLUSTER_NAME=Foxtrot C*
@@ -18,7 +18,7 @@ cassandra-01:
 
 cassandra-02: 
   container_name: cassandra-02
-  image: raimille1/spark-cassandra:cass-2.1.12
+  image: foxtrotsystems/apache-cassandra:2.1.12
   mem_limit: 2200000000
   environment:
     - CASSANDRA_CLUSTER_NAME=Foxtrot C*
@@ -35,7 +35,7 @@ cassandra-02:
 
 kafka:
   container_name: kafkahost
-  image: raimille1/spark-cassandra:kafka-0.9.0.0
+  image: foxtrotsystems/apache-kafka:0.9.0.0
   ports:
     - "2181:2181"
     - "9092:9092"
@@ -50,7 +50,7 @@ spark-master:
   mem_limit: 1500000000
   environment:
     - SPARK_MASTER_HOST=sparkmaster
-  image: raimille1/spark-cassandra:spark-1.6.0-scala-2.11
+  image: foxtrotsystems/apache-spark:1.6.0
   command: /usr/local/bin/start master
   ports:
     - "4040:4040"
@@ -60,7 +60,7 @@ spark-master:
   restart: always
 
 spark-worker:
-  image: raimille1/spark-cassandra:spark-1.6.0-scala-2.11
+  image: foxtrotsystems/apache-spark:1.6.0
   command: /usr/local/bin/start worker
   mem_limit: 2500000000
   environment:
@@ -70,7 +70,7 @@ spark-worker:
 # Monitoring 
 #opscenter:
 #  container_name: opscenter
-#  image: raimille1/spark-cassandra:opscenter-5.2.2
+#  image: foxtrotsystems/opscenter:5.2.2
 #  ports:
 #    - "8888:8888"
 #  restart: always
