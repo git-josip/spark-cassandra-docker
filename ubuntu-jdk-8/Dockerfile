@@ -19,3 +19,11 @@ RUN add-apt-repository ppa:webupd8team/java
 RUN apt-get update
 RUN apt-get install -y oracle-java8-installer
 
+# Allow users to read these settings so they can run /sbin/my_init
+RUN chmod 755 /etc/container_environment
+RUN chmod 644 /etc/container_environment.sh /etc/container_environment.json
+
+CMD ["/sbin/my_init"]
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
