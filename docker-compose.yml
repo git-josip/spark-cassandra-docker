@@ -16,22 +16,22 @@ cassandra-01:
     - "9042:9042"
   restart: always
 
-cassandra-02: 
-  container_name: cassandra-02
-  image: foxtrotsystems/apache-cassandra:2.1.12
-  mem_limit: 2200000000
-  environment:
-    - CASSANDRA_CLUSTER_NAME=Foxtrot C*
-    - CASSANDRA_DC=DC1
-    - CASSANDRA_RACK=RACK1
-    - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
-    - MAX_HEAP_SIZE=2G
-    - HEAP_NEWSIZE=1G
-    - CASSANDRA_SEEDS=cassandra-01
-    #- OPSCENTER_HOST=opscenter
-  volumes:
-    - /data/cassandra-02:/var/lib/cassandra
-  restart: always
+#cassandra-02:
+#  container_name: cassandra-02
+#  image: foxtrotsystems/apache-cassandra:2.1.12
+#  mem_limit: 2200000000
+#  environment:
+#    - CASSANDRA_CLUSTER_NAME=Foxtrot C*
+#    - CASSANDRA_DC=DC1
+#    - CASSANDRA_RACK=RACK1
+#    - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+#    - MAX_HEAP_SIZE=2G
+#    - HEAP_NEWSIZE=1G
+##    - CASSANDRA_SEEDS=cassandra-01
+#    #- OPSCENTER_HOST=opscenter
+#  volumes:
+#    - /data/cassandra-02:/var/lib/cassandra
+#  restart: always
 
 kafka:
   container_name: kafkahost
