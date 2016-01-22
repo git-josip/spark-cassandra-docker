@@ -1,0 +1,27 @@
+cassandra:
+  image: foxtrotsystems/apache-cassandra:2.1.12
+#  build: ${PROJECT_ROOT}/spark-cassandra-docker/cassandra
+  container_name: cassandra
+  net: host
+  mem_limit: 2200000000
+  environment:
+    - SERVICE_NAME=cassandra
+    - CASSANDRA_CLUSTER_NAME=Foxtrot C*
+    - CASSANDRA_DC=DC1
+    - CASSANDRA_RACK=RACK1
+    - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+    - MAX_HEAP_SIZE=2G
+    - HEAP_NEWSIZE=1G
+    - CASSANDRA_LISTEN_ADDRESS
+    - CASSANDRA_BROADCAST_ADDRESS
+    - CASSANDRA_SEEDS
+    #- OPSCENTER_HOST=opscenter
+  ports:
+    - "9042:9042"
+    - "7000:7000"
+    - "7001:7001"
+    - "7199:7199"
+    - "9160:9160"
+  restart: always
+  volumes:
+    - /data/cassandra:/var/lib/cassandra
