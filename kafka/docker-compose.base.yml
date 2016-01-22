@@ -1,0 +1,9 @@
+kafka:
+  build: ${PROJECT_ROOT}/spark-cassandra-docker/kafka
+  net: host
+  environment:
+    - ZK_HOSTS=zookeeper-00.service.consul:2181,zookeeper-01.service.consul:2181,zookeeper-02.service.consul:2181
+    - ADVERTISED_HOST
+    - BROKER_ID
+  ports:
+    - "9092:9092"

@@ -1,27 +1,27 @@
-# Kafka and Zookeeper
+FROM foxtrotsystems/ubuntu-base:0.9.18
 
-FROM java:openjdk-8-jre
+RUN apt-get update -y
 
-ENV DEBIAN_FRONTEND noninteractive
 ENV SCALA_VERSION 2.11
 ENV KAFKA_VERSION 0.9.0.0
-ENV KAFKA_HOME /opt/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION"
+ENV KAFKA_HOME /opt/kafka_"${SCALA_VERSION}"-"${KAFKA_VERSION}"
 
-# Install Kafka, Zookeeper and other needed things
-RUN apt-get update && \
-    apt-get install -y zookeeper wget supervisor dnsutils && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get clean && \
-    wget -q http://apache.mirrors.spacedump.net/kafka/"$KAFKA_VERSION"/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz -O /tmp/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz && \
-    tar xfz /tmp/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz -C /opt && \
-    rm /tmp/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz
+RUN wget -q http://apache.mirrors.spacedump.net/kafka/"${KAFKA_VERSION}"/kafka_"${SCALA_VERSION}"-"${KAFKA_VERSION}".tgz -O /tmp/kafka_"${SCALA_VERSION}"-"${KAFKA_VERSION}".tgz
+RUN tar -xzf /tmp/kafka_"${SCALA_VERSION}"-"${KAFKA_VERSION}".tgz -C /opt
+RUN rm /tmp/kafka_"${SCALA_VERSION}"-"${KAFKA_VERSION}".tgz
 
-ADD scripts/start-kafka.sh /usr/bin/start-kafka.sh
+VOLUME ["/var/lib/kafka"]
 
-# Supervisor config
-ADD supervisor/kafka.conf supervisor/zookeeper.conf /etc/supervisor/conf.d/
+ADD conf/server.properties ${KAFKA_HOME}/config/server.properties
+ADD conf/supervisord.conf /etc/supervisord.conf
+ADD scripts/start-kafka.sh scripts/create-topic.sh /usr/local/bin/
 
-# 2181 is zookeeper, 9092 is kafka
-EXPOSE 2181 9092
+EXPOSE 9092
 
 CMD ["supervisord", "-n"]
+
+#RUN apt-get install -y vim dnsutils
+#RUN apt-get install -y xinetd telnetd telnet
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
