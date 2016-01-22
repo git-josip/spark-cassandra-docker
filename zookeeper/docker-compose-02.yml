@@ -2,9 +2,6 @@ zookeeper-02:
   extends:
     file: ${PROJECT_ROOT}/spark-cassandra-docker/zookeeper/docker-compose.base.yml
     service: zookeeper
-  container_name: zookeeper-02
   environment:
     - SERVICE_NAME=zookeeper-02
     - ZK_ID=3
-  volumes:
-    - /data/zookeeper-02:/var/lib/zookeeper

@@ -1,5 +1,6 @@
 zookeeper:
   build: ${PROJECT_ROOT}/spark-cassandra-docker/zookeeper
+  container_name: zookeeper
   net: host
   environment:
     - SERVICE_NAME
@@ -9,3 +10,5 @@ zookeeper:
     - "2181:2181"
     - "2888:2888"
     - "3888:3888"
+  volumes:
+    - /data/zookeeper:/var/lib/zookeeper
