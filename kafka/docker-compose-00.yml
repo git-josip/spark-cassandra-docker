@@ -2,11 +2,8 @@ kafka-00:
   extends:
     file: ${PROJECT_ROOT}/spark-cassandra-docker/kafka/docker-compose.base.yml
     service: kafka
-  container_name: kafka-00
   environment:
     - SERVICE_NAME=kafka-00
     - ADVERTISED_HOST=kafka-00.service.consul
     - BROKER_ID=0
-  volumes:
-    - /data/kafka-00:/var/lib/kafka
 
