@@ -21,7 +21,6 @@ ADD src/supervisord-no-ops-center.conf /etc/supervisord-no-ops-center.conf
 # Necessary since cassandra is trying to check for a NPE that freezes boot2docker
 RUN sed -ri '/CASSANDRA-7254/,+5d' /usr/sbin/cassandra
 
-EXPOSE 7199 7000 7001 9160 9042
-EXPOSE 22 8012 61621
+EXPOSE 8012 61621
 USER root
 CMD start
