@@ -1,4 +1,4 @@
-FROM raimille1/spark-cassandra:centos-jdk-8
+FROM foxtrotsystems/centos7:jdk8
 
 # Spark install
 RUN mkdir /usr/local/spark-1.6.0-bin-2.7.1-scala-2.11-jdk-8
@@ -8,7 +8,7 @@ ENV SPARK_HOME /usr/local/spark
 
 # Spark utils/conf
 ADD src/start-master.sh /start-master.sh
-ADD src/start-worker /start-worker.sh
+ADD src/start-worker.sh /start-worker.sh
 ADD src/spark-defaults.conf /spark-defaults.conf
 ADD src/log4j.properties $SPARK_HOME/conf/log4j.properties
 

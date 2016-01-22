@@ -1,0 +1,13 @@
+sparkworker:
+#  image: foxtrotsystems/apache-spark:1.6.0
+  build: ${PROJECT_ROOT}/spark-cassandra-docker/spark
+  container_name: sparkworker
+  net: host
+  command: /usr/local/bin/start worker
+  mem_limit: 2500000000
+  environment:
+    - SPARK_MASTER_HOST=sparkmaster.service.consul
+    - SPARK_MASTER_ENV_SPARK_MASTER_PORT=7077
+    - SERVICE_NAME=sparkworker
+    - SPARK_LOCAL_IP
+  restart: always
