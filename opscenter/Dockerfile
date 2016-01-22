@@ -1,4 +1,4 @@
-FROM raimille1/spark-cassandra:centos-jdk-8
+FROM foxtrotsystems/centos7:jdk8
 
 # Install ssh dependencies
 RUN yum install -y openssh-clients
