@@ -1,0 +1,11 @@
+zookeeper:
+  build: ${PROJECT_ROOT}/spark-cassandra-docker/zookeeper
+  net: host
+  environment:
+    - SERVICE_NAME
+    - ZK_ID
+    - ZK_ENSEMBLE=server.1=zookeeper-00.service.consul:2888:3888\nserver.2=zookeeper-01.service.consul:2888:3888\nserver.3=zookeeper-02.service.consul:2888:3888
+  ports:
+    - "2181:2181"
+    - "2888:2888"
+    - "3888:3888"
