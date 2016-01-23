@@ -1,5 +1,6 @@
 zookeeper:
-  build: ${PROJECT_ROOT}/spark-cassandra-docker/zookeeper
+  image: foxtrotsystems/apache-zookeeper:3.4.6
+#  build: ${PROJECT_ROOT}/spark-cassandra-docker/zookeeper
   container_name: zookeeper
   net: host
   environment:
