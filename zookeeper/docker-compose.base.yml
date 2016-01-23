@@ -13,3 +13,4 @@ zookeeper:
     - "3888:3888"
   volumes:
     - /data/zookeeper:/var/lib/zookeeper
+  restart: always

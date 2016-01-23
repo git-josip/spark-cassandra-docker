@@ -11,3 +11,4 @@ kafka:
     - "9092:9092"
   volumes:
     - /data/kafka:/var/lib/kafka
+  restart: always
