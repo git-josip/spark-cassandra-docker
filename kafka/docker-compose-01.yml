@@ -1,4 +1,4 @@
-kafka-00:
+kafka:
   extends:
     file: ${PROJECT_ROOT}/spark-cassandra-docker/kafka/docker-compose.base.yml
     service: kafka

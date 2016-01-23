@@ -1,4 +1,4 @@
-zookeeper-01:
+zookeeper:
   extends:
     file: ${PROJECT_ROOT}/spark-cassandra-docker/zookeeper/docker-compose.base.yml
     service: zookeeper
