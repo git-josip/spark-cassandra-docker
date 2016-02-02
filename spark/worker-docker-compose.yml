@@ -10,4 +10,5 @@ sparkworker:
     - SPARK_MASTER_ENV_SPARK_MASTER_PORT=7077
     - SERVICE_NAME=sparkworker
     - SPARK_LOCAL_IP
+    - SPARK_WORK_DIR
   restart: always
