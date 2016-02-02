@@ -12,3 +12,5 @@ sparkworker:
     - SPARK_LOCAL_IP
     - SPARK_WORK_DIR
   restart: always
+  volumes:
+    - ${SPARK_WORK_DIR}:${SPARK_WORK_DIR}
