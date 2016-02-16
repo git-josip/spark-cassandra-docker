@@ -9,5 +9,5 @@ ${JAVA_HOME}/bin/java -cp ${SPARK_CLASSPATH} \
 	-Dspark.broadcast.port=7003 -Dspark.replClassServer.port=7004 \
 	-Dspark.blockManager.port=7005 -Dspark.executor.port=7006 -Dspark.ui.port=4040 \
 	-Dspark.broadcast.factory=org.apache.spark.broadcast.HttpBroadcastFactory -Xms1g \
-	-Xmx1g --host ${SPARK_MASTER_HOST} --port 7077 --webui-port 8080 \
-	--properties-file /spark-defaults.conf org.apache.spark.deploy.master.Master
+	-Xmx1g org.apache.spark.deploy.master.Master --host ${SPARK_MASTER_HOST} --port 7077 \
+	--webui-port 8080 --properties-file /spark-defaults.conf
