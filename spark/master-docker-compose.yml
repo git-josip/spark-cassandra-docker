@@ -7,6 +7,7 @@ sparkmaster:
   environment:
     - SPARK_MASTER_HOST=sparkmaster.service.consul
     - SERVICE_NAME=sparkmaster
+    - SPARK_LOCAL_IP
   command: /usr/local/bin/start master
   ports:
     - "4040:4040"

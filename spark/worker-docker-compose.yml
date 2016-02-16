@@ -10,7 +10,7 @@ sparkworker:
     - SPARK_MASTER_ENV_SPARK_MASTER_PORT=7077
     - SERVICE_NAME=sparkworker
     - SPARK_LOCAL_IP
-    - SPAR_LOCAL_DIRS=${SPARK_WORK_DIR}
+    - SPARK_LOCAL_DIRS=${SPARK_WORK_DIR}
   restart: always
   volumes:
     - ${SPARK_WORK_DIR}:${SPARK_WORK_DIR}
