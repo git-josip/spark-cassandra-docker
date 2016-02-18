@@ -7,6 +7,7 @@ ${JAVA_HOME}/bin/java -cp ${SPARK_CLASSPATH} \
 	-Dspark.broadcast.port=7003 -Dspark.replClassServer.port=7004 \
 	-Dspark.blockManager.port=7005 -Dspark.executor.port=7006 -Dspark.ui.port=4040 \
 	-Dspark.broadcast.factory=org.apache.spark.broadcast.HttpBroadcastFactory \
+	-Dspark.worker.cleanup.enabled=true \
 	-Dspark.worker.cleanup.appDataTtl=${SPARK_WORKER_CLEANUP_TTL} \
 	-Dspark.worker.cleanup.interval=${SPARK_WORKER_CLEANUP_INTERVAL} \
 	-Xms1g -Xmx1g org.apache.spark.deploy.worker.Worker --webui-port 8081 \
