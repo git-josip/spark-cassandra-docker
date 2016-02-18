@@ -11,6 +11,8 @@ sparkworker:
     - SERVICE_NAME=sparkworker
     - SPARK_LOCAL_IP
     - SPARK_LOCAL_DIRS=${SPARK_WORK_DIR}
+    - SPARK_WORKER_CLEANUP_TTL=300
+    - SPARK_WORKER_CLEANUP_INTERVAL=600
   restart: always
   volumes:
     - ${SPARK_WORK_DIR}:${SPARK_WORK_DIR}
