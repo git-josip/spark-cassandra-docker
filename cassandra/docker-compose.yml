@@ -1,5 +1,5 @@
 cassandra:
-  image: foxtrotsystems/apache-cassandra:2.1.12
+  image: foxtrotsystems/apache-cassandra:3.0.3
 #  build: ${PROJECT_ROOT}/spark-cassandra-docker/cassandra
   container_name: cassandra
   net: host
@@ -10,8 +10,6 @@ cassandra:
     - CASSANDRA_DC=DC1
     - CASSANDRA_RACK=RACK1
     - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
-    - MAX_HEAP_SIZE=2G
-    - HEAP_NEWSIZE=1G
     - CASSANDRA_LISTEN_ADDRESS
     - CASSANDRA_BROADCAST_ADDRESS
     - CASSANDRA_SEEDS
