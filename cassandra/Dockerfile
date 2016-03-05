@@ -1,4 +1,4 @@
-FROM cassandra:2.1.12
+FROM cassandra:3.0.3
 
 # Install:
 # supervisor: to run supervised commands
