@@ -67,6 +67,9 @@ Example:
 20. Upload the tarball to s3
 21. Update the Dockerfile to reference the new tarball
 22. Update all other application Dockerfile that require spark to reference the new `spark-assembly-${VERSION}-hadoop2.6.4-without-scala.jar`
+23. `docker build --tag foxtrotsystems/apache-spark:${VERSION} --no-cache .`
+24. `docker push foxtrotsystems/apache-spark:1.6.1`
+23. Update `master-docker-compose.yml` and `worker-docker-compose.yml` to reference the the image from dockerhub
 
 
 
