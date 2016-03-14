@@ -1,5 +1,5 @@
 sparkworker:
-  image: foxtrotsystems/apache-spark:1.6.0
+  image: foxtrotsystems/apache-spark:1.6.1
 #  build: ${PROJECT_ROOT}/spark-cassandra-docker/spark
   container_name: sparkworker
   net: host

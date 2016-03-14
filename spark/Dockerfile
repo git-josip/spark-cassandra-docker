@@ -1,19 +1,21 @@
 FROM foxtrotsystems/centos7:jdk8
 
-# Spark install
-RUN mkdir /usr/local/spark-1.6.0-bin-2.7.1-scala-2.11-jdk-8
-RUN curl -s https://s3.amazonaws.com/foxtrot-libs/spark-1.6.0-bin-2.7.1-scala-2.11-jdk-8.tar.gz | tar -xz -C /usr/local/spark-1.6.0-bin-2.7.1-scala-2.11-jdk-8
-RUN cd /usr/local && ln -s spark-1.6.0-bin-2.7.1-scala-2.11-jdk-8 spark
+ENV SPARK_VERSION 1.6.1
+ENV HADOOP_VERSION 2.6.4
+ENV SCALA_VERSION 2.11
 ENV SPARK_HOME /usr/local/spark
+
+# Spark install
+RUN curl -o /tmp/spark.tgz "https://s3.amazonaws.com/foxtrot-libs/spark-${SPARK_VERSION}-bin-${HADOOP_VERSION}-scala-${SCALA_VERSION}-jdk8.tgz"
+RUN tar -C /usr/local -xzf /tmp/spark.tgz spark-${SPARK_VERSION}-bin-${HADOOP_VERSION}
+RUN cd /usr/local && ln -s spark-${SPARK_VERSION}-bin-${HADOOP_VERSION} ${SPARK_HOME}
+RUN rm -rf /tmp/*
 
 # Spark utils/conf
 ADD src/start-master.sh /start-master.sh
 ADD src/start-worker.sh /start-worker.sh
 ADD src/spark-defaults.conf /spark-defaults.conf
 ADD src/log4j.properties $SPARK_HOME/conf/log4j.properties
-
-# Spark Dependencies
-ADD lib /usr/local/spark/lib
 
 # Spark Configuration
 ENV SPARK_MASTER_OPTS="-Dspark.driver.port=7001 -Dspark.fileserver.port=7002 -Dspark.broadcast.port=7003 -Dspark.replClassServer.port=7004 -Dspark.blockManager.port=7005 -Dspark.executor.port=7006 -Dspark.ui.port=4040 -Dspark.broadcast.factory=org.apache.spark.broadcast.HttpBroadcastFactory"

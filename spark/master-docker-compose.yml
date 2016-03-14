@@ -1,5 +1,5 @@
 sparkmaster:
-  image: foxtrotsystems/apache-spark:1.6.0
+  image: foxtrotsystems/apache-spark:1.6.1
   container_name: sparkmaster
   net: host
   mem_limit: 1500000000
