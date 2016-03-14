@@ -1,4 +1,4 @@
-FROM postgres:9.5.0
+FROM postgres:9.5.1
 
 ENV PGROUTING_VERSION 2.1.0-1
 
