@@ -3,7 +3,6 @@ cassandra:
 #  build: ${PROJECT_ROOT}/spark-cassandra-docker/cassandra
   container_name: cassandra
   net: host
-  mem_limit: 2200000000
   environment:
     - SERVICE_NAME=cassandra
     - CASSANDRA_CLUSTER_NAME=Foxtrot C*
